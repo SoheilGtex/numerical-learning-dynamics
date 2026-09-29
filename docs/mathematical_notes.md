@@ -125,7 +125,7 @@ At $\delta=10^{-8}$ in the exact model, Normal Equations gives relative coeffici
 For every nonzero $\delta$, the construction $x_2=x_1+\delta z$ satisfies
 
 $$
-\operatorname{span}\{x_1,x_2,x_3\}=\operatorname{span}\{x_1,z,x_3\}.
+\mathrm{span}\{x_1,x_2,x_3\}=\mathrm{span}\{x_1,z,x_3\}.
 $$
 
 Thus the mathematical column space is unchanged for nonzero $\delta$, although its coordinate representation becomes increasingly ill-conditioned as $\delta$ approaches zero. Least-squares fitted values are projections $\hat y=P_Xy$, so stable solvers can exhibit stable fitted-subspace behavior alongside unstable parameter coordinates. This is a mathematical statement about the construction; exact floating-point invariance is not assumed.
@@ -153,7 +153,7 @@ where only slopes are penalized. The intercept is reconstructed as $\hat\beta_0=
 For $X_c=U\Sigma V^T$, the explicit SVD solution is
 
 $$
-\hat b_\lambda=V\operatorname{diag}\left(\frac{\sigma_i}{\sigma_i^2+\lambda}\right)U^Ty_c.
+\hat b_\lambda=V\mathrm{diag}\left(\frac{\sigma_i}{\sigma_i^2+\lambda}\right)U^Ty_c.
 $$
 
 Equivalently, the centered slope satisfies
@@ -168,7 +168,7 @@ The coefficient inversion factor is $\sigma_i/(\sigma_i^2+\lambda)$. The hat-mat
 
 With an unpenalized intercept,
 
-$$\operatorname{df}(\lambda)=1+\sum_i\frac{\sigma_i^2}{\sigma_i^2+\lambda}.$$
+$$\mathrm{df}(\lambda)=1+\sum_i\frac{\sigma_i^2}{\sigma_i^2+\lambda}.$$
 
 The leading one represents the intercept. For a full-rank centered predictor matrix,
 
@@ -181,7 +181,7 @@ It decreases as positive regularization is added for a fixed design, but this co
 Validation selection minimizes validation RMSE using only the training and validation partitions. Generalized Cross-Validation uses only training data:
 
 $$
-\operatorname{GCV}(\lambda)=\frac{\operatorname{RSS}(\lambda)/n}{\left(1-\operatorname{df}(\lambda)/n\right)^2}.
+\mathrm{GCV}(\lambda)=\frac{\mathrm{RSS}(\lambda)/n}{\left(1-\mathrm{df}(\lambda)/n\right)^2}.
 $$
 
 The oracle coefficient selector minimizes raw-coordinate coefficient error using the known synthetic $\beta^\star$. It is explicitly a synthetic diagnostic only and is not available as a practical selection method.
@@ -198,23 +198,23 @@ Regularization introduces bias intentionally. Across repeated Gaussian-noise rea
 
 The analytical interval machinery applies to full-rank OLS under $\epsilon\sim N(0,\sigma^2I)$. For $n$ observations and $p$ fitted parameters,
 
-$$\hat\sigma^2=\frac{\operatorname{RSS}}{n-p},\qquad n>p.$$
+$$\hat\sigma^2=\frac{\mathrm{RSS}}{n-p},\qquad n>p.$$
 
 The implementation computes the OLS covariance using an SVD rather than explicitly forming $(X^TX)^{-1}$:
 
-$$\widehat{\operatorname{Cov}}(\hat\beta)=\hat\sigma^2 V\operatorname{diag}(\sigma_i^{-2})V^T.$$
+$$\widehat{\mathrm{Cov}}(\hat\beta)=\hat\sigma^2 V\mathrm{diag}(\sigma_i^{-2})V^T.$$
 
 For a new design vector $x_0$ including the intercept, the estimated conditional mean is $\hat\mu_0=x_0^T\hat\beta$ with standard error
 
-$$\operatorname{SE}_{\mathrm{mean}}=\sqrt{x_0^T\widehat{\operatorname{Cov}}(\hat\beta)x_0}.$$
+$$\mathrm{SE}_{\mathrm{mean}}=\sqrt{x_0^T\widehat{\mathrm{Cov}}(\hat\beta)x_0}.$$
 
 A two-sided Student-$t$ confidence interval is
 
-$$\hat\mu_0\pm t_{1-\alpha/2,n-p}\operatorname{SE}_{\mathrm{mean}}.$$
+$$\hat\mu_0\pm t_{1-\alpha/2,n-p}\mathrm{SE}_{\mathrm{mean}}.$$
 
 For a future noisy observation,
 
-$$\operatorname{SE}_{\mathrm{pred}}=\sqrt{\hat\sigma^2+x_0^T\widehat{\operatorname{Cov}}(\hat\beta)x_0},$$
+$$\mathrm{SE}_{\mathrm{pred}}=\sqrt{\hat\sigma^2+x_0^T\widehat{\mathrm{Cov}}(\hat\beta)x_0},$$
 
 so the prediction interval is wider than the corresponding conditional-mean interval.
 

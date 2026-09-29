@@ -22,7 +22,7 @@ For $X_c=U\Sigma V^T$, the explicit SVD solution is
 
 $$
 \hat b_\lambda
-=V\operatorname{diag}\left(\frac{\sigma_i}{\sigma_i^2+\lambda}\right)U^Ty_c.
+=V\mathrm{diag}\left(\frac{\sigma_i}{\sigma_i^2+\lambda}\right)U^Ty_c.
 $$
 
 Equivalently, the centered slope satisfies
@@ -44,7 +44,7 @@ At $\lambda=0$ and nonzero $\sigma_i$, $f_i=1$. Increasing $\lambda$ suppresses 
 With an unpenalized intercept, the effective degrees of freedom convention used in the experiments is
 
 $$
-\operatorname{df}(\lambda)=1+\sum_i\frac{\sigma_i^2}{\sigma_i^2+\lambda}.
+\mathrm{df}(\lambda)=1+\sum_i\frac{\sigma_i^2}{\sigma_i^2+\lambda}.
 $$
 
 The leading one represents the intercept. For a full-rank centered predictor matrix, the regularized normal-system condition number is
@@ -63,9 +63,9 @@ The dimension-aware grid uses $\lambda=\alpha\sigma_{\max}^2$, where $\sigma_{\m
 Validation selection minimizes validation RMSE using only the training and validation partitions. The selected model is then evaluated once on the untouched test partition. Generalized Cross-Validation uses only training data:
 
 $$
-\operatorname{GCV}(\lambda)=
-\frac{\operatorname{RSS}(\lambda)/n}
-{\left(1-\operatorname{df}(\lambda)/n\right)^2}.
+\mathrm{GCV}(\lambda)=
+\frac{\mathrm{RSS}(\lambda)/n}
+{\left(1-\mathrm{df}(\lambda)/n\right)^2}.
 $$
 
 The oracle coefficient selector minimizes raw-coordinate coefficient error using the known synthetic $\beta^\star$. It is explicitly a synthetic diagnostic only and is not available as a practical selection method.
@@ -87,34 +87,34 @@ $$
 For $n$ observations and $p$ fitted parameters, the unbiased noise-variance estimator is
 
 $$
-\hat\sigma^2=\frac{\operatorname{RSS}}{n-p},\qquad n>p.
+\hat\sigma^2=\frac{\mathrm{RSS}}{n-p},\qquad n>p.
 $$
 
 The implementation computes the OLS covariance using an SVD rather than explicitly forming $(X^TX)^{-1}$:
 
 $$
-\widehat{\operatorname{Cov}}(\hat\beta)
-=\hat\sigma^2 V\operatorname{diag}(\sigma_i^{-2})V^T.
+\widehat{\mathrm{Cov}}(\hat\beta)
+=\hat\sigma^2 V\mathrm{diag}(\sigma_i^{-2})V^T.
 $$
 
 For a new design vector $x_0$ including the intercept, the estimated conditional mean is $\hat\mu_0=x_0^T\hat\beta$ with standard error
 
 $$
-\operatorname{SE}_{\mathrm{mean}}
-=\sqrt{x_0^T\widehat{\operatorname{Cov}}(\hat\beta)x_0}.
+\mathrm{SE}_{\mathrm{mean}}
+=\sqrt{x_0^T\widehat{\mathrm{Cov}}(\hat\beta)x_0}.
 $$
 
 A two-sided Student-$t$ confidence interval is
 
 $$
-\hat\mu_0\pm t_{1-\alpha/2,n-p}\operatorname{SE}_{\mathrm{mean}}.
+\hat\mu_0\pm t_{1-\alpha/2,n-p}\mathrm{SE}_{\mathrm{mean}}.
 $$
 
 For a future noisy observation, the prediction standard error is
 
 $$
-\operatorname{SE}_{\mathrm{pred}}
-=\sqrt{\hat\sigma^2+x_0^T\widehat{\operatorname{Cov}}(\hat\beta)x_0},
+\mathrm{SE}_{\mathrm{pred}}
+=\sqrt{\hat\sigma^2+x_0^T\widehat{\mathrm{Cov}}(\hat\beta)x_0},
 $$
 
 so the prediction interval is wider than the corresponding conditional-mean interval.
