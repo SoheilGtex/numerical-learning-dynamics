@@ -1,0 +1,4 @@
+previous_checkpoint,checkpoint,model,delta_rmse
+pre_semester,early_semester,Ridge,0.2828766743663833
+early_semester,mid_semester,Ridge,0.17946440139554243
+mid_semester,later_semester,Ridge,0.08233752448865372

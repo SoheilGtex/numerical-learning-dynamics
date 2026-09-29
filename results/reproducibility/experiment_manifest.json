@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "project": "numerical-learning-dynamics",
+  "release_version": "0.6.0",
+  "release_python_version": "3.12.3",
+  "release_environment_file": "results/reproducibility/environment.txt",
+  "release_requirements_file": "requirements-release.txt",
+  "synthetic_data_only": true,
+  "experiments": [
+    {"id": "phase1_baseline", "phase": 1, "script": "scripts/run_baseline.py", "primary_outputs": ["results/tables/baseline_metrics.csv", "results/figures/predicted_vs_actual.png"], "seed_policy": "seed=2026 in Phase 1 generator", "synthetic": true, "role": "least-squares baseline"},
+    {"id": "phase2_solver_comparison", "phase": 2, "script": "scripts/run_solver_comparison.py", "primary_outputs": ["results/tables/solver_comparison.csv", "results/figures/solver_coefficient_error.png", "results/figures/singular_value_spectra.png"], "seed_policy": "deterministic fixed seeds in script", "synthetic": true, "role": "explicit solver and rank-deficiency comparison"},
+    {"id": "phase3_conditioning", "phase": 3, "script": "scripts/run_conditioning_study.py", "primary_outputs": ["results/tables/conditioning_sweep.csv", "results/tables/conditioning_summary.csv", "results/figures/coefficient_error_vs_condition.png"], "seed_policy": "deterministic fixed seeds in script", "synthetic": true, "role": "conditioning and fitted-value stability"},
+    {"id": "phase3_perturbation", "phase": 3, "script": "scripts/run_perturbation_study.py", "primary_outputs": ["results/tables/response_perturbation.csv", "results/tables/design_perturbation.csv", "results/figures/response_amplification_vs_condition.png"], "seed_policy": "deterministic fixed seeds in script", "synthetic": true, "role": "response/design perturbation sensitivity"},
+    {"id": "phase4_regularization", "phase": 4, "script": "scripts/run_regularization_study.py", "primary_outputs": ["results/tables/lambda_selection.csv", "results/tables/bias_variance_summary.csv", "results/figures/regularization_path.png", "results/figures/bias_variance_tradeoff.png"], "seed_policy": "deterministic grids and replicates in script", "synthetic": true, "role": "Ridge selection, bias–variance, and stability"},
+    {"id": "phase4_uncertainty", "phase": 4, "script": "scripts/run_uncertainty_study.py", "primary_outputs": ["results/tables/uncertainty_coverage.csv", "results/figures/ols_interval_coverage.png"], "seed_policy": "200 deterministic Gaussian OLS replications", "synthetic": true, "role": "classical OLS interval coverage"},
+    {"id": "phase5_forecasting", "phase": 5, "script": "scripts/run_forecasting_study.py", "primary_outputs": ["results/tables/forecasting_summary.csv", "results/tables/checkpoint_improvement.csv", "results/tables/feature_ablation_summary.csv", "results/tables/robustness_summary.csv", "results/figures/forecasting_rmse_vs_checkpoint.png", "results/figures/feature_ablation.png", "results/figures/response_contamination_robustness.png", "results/figures/feature_contamination_robustness.png"], "seed_policy": "20 clean seeds and 20 robustness seeds; contamination fractions 0, 0.05, 0.10, 0.20", "synthetic": true, "role": "held-out forecasting, ablation, and robustness"}
+  ]
+}

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Numerical Learning Dynamics"
+type: software
+authors:
+  - family-names: Salmani
+    given-names: Soheil
+abstract: "A reproducible numerical modeling study of early student-performance forecasting, numerical least squares, conditioning, regularization, uncertainty, and robustness."
+license: MIT
+version: 0.6.0

@@ -1,0 +1,2 @@
+seed,sample_size,noise_std,train_size,test_size,mae,rmse,r2,coefficient_relative_error
+2026,160,0.6,120,40,0.5770638994946642,0.6931453299612341,0.7434685565802517,0.16859952512103163

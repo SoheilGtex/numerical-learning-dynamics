@@ -1,0 +1,7 @@
+point_type,leverage,interval_type,nominal_coverage,empirical_coverage,mean_interval_width,median_interval_width,n_replications,n_evaluations
+maximum_leverage,0.13211917142797414,future_prediction_interval,0.95,0.945,2.5346418931807024,2.5237509000144454,200,200
+maximum_leverage,0.13211917142797414,mean_response_ci,0.95,0.955,0.8658715235970466,0.8621509976830208,200,200
+median_leverage,0.07528917535664065,future_prediction_interval,0.95,0.94,2.470206005600005,2.4595918842132267,200,200
+median_leverage,0.07528917535664065,mean_response_ci,0.95,0.955,0.6536372685304508,0.6508286828111309,200,200
+upper_quartile_leverage,0.08899323450450254,future_prediction_interval,0.95,0.96,2.4858969821937698,2.4752154389280587,200,200
+upper_quartile_leverage,0.08899323450450254,mean_response_ci,0.95,0.935,0.7106389904794888,0.7075854765255798,200,200
